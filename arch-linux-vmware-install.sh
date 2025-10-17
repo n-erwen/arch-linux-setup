@@ -1,5 +1,4 @@
 loadkeys uk && \
-setfont ter-132b && \
 ping -c 3 ping.archlinux.org || (echo "No internet connection" && exit 1)
 
 timedatectl set-ntp true && \
