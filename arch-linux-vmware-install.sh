@@ -36,7 +36,6 @@ echo "KEYMAP=uk" > /etc/vconsole.conf
 echo "archlinux" > /etc/hostname
 
 mkinitcpio -P && \
-passwd && \
 
 pacman -S grub efibootmgr && \
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB && \
@@ -44,4 +43,9 @@ grub-mkconfig -o /boot/grub/grub.cfg && \
 exit
 EOF
 
+echo -n "Root password: "
+read -s ROOT_PASSWORD
+arch-chroot /mnt chpasswd <<EOF
+root:$ROOT_PASSWORD
+EOF
 echo "You can now reboot your system."
